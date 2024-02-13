@@ -15,7 +15,7 @@ export const DynamicForm = () => {
   }, [])
 
   const onSubmit = async (data: any) => {
-    if (data) console.log(data, 'dataaaa')
+    if (data) console.log(data, 'data')
   }
   const {
     handleSubmit,

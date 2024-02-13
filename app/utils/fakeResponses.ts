@@ -333,7 +333,7 @@ export const adminRequests: ApiResponse<NotificacionData> = {
         multiempresa: 'SECAR INGENIEROS S.A.',
       },
       {
-        id: 81,
+        id: 81, // Id notificacion
         uid: '79B7-SW-WQ11-AD2X',
         eid: '01',
         idUsuarioModifico: 1,
@@ -341,16 +341,23 @@ export const adminRequests: ApiResponse<NotificacionData> = {
         fechaModificacion: '2024-02-12T09:35:43.267',
         fechaCreacion: '2024-02-12T09:36:00',
         active: true,
-        notificacion: 'Ingreso de usuario',
+        notificacion: 'Solicitud de ingreso de Sebastian Rodriguez', //Descripcion del card
         notificacionCodigo: null,
         tipoNotificacion: {
           id: 1,
-          tipoNotificacion: 'Crear Usuario',
+          tipoNotificacion: 'Ingreso de usuario',
           codigo: 'CrearUsuario',
           accionesNotificacion: [
+            // Mapear las acciones
             {
-              id: 1,
+              id: 1, // Id accion
               accionNotificacion: 'Crear',
+              accionNotificacionCodigo: '',
+              idTipoNotificacion: 1,
+            },
+            {
+              id: 2, // Id accion
+              accionNotificacion: 'Eliminar',
               accionNotificacionCodigo: '',
               idTipoNotificacion: 1,
             },
@@ -381,4 +388,14 @@ export const adminRequests: ApiResponse<NotificacionData> = {
   status: 'Ok',
   statusCode: 200,
   message: 'Success',
+}
+
+const tokenResponse = {
+  status: 'Ok',
+  statusCode: 200,
+  message: 'Success',
+  data: {
+    token:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic3VwZXJhZG1pbmlzdHJhZG9yIiwibmJmIjoxNzA3NDkyODk0LCJleHAiOjE3MDc1MDcyOTQsImlhdCI6MTcwNzQ5Mjg5NCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0NDM2NyIsImF1ZCI6IjAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMCJ9.GNNjsKJnQrUgltzhW7T9rTUYvYJcE_kv5sJI0_hNues',
+  },
 }

@@ -44,7 +44,7 @@ interface Usuario {
   idPerfil: number
 }
 
-interface Notificacion {
+export interface Notificacion {
   id: number
   uid: string
   eid: string

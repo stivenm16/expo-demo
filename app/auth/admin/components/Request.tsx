@@ -1,17 +1,64 @@
-import { getAdminRequests } from '@/app/services'
+import { Notificacion } from '@/app/models'
+import { CustomButton } from '@/components'
+
 import { Text, View } from '@/components/Themed'
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
+import { FlatList, TextInput } from 'react-native'
 
-const Request = () => {
-  const [requests, setRequests] = React.useState<any>()
+interface Props {
+  req: Notificacion
+}
 
-  useEffect(() => {
-    const adminReqs = getAdminRequests()
-    setRequests(adminReqs)
-  }, [])
+const Request = ({ req }: Props) => {
+  const [note, setNote] = useState('')
+
+  const handleNoteChange = (text: string) => {
+    setNote(text)
+  }
   return (
-    <View>
-      <Text>Request</Text>
+    <View
+      style={{
+        height: 180,
+        padding: 20,
+        width: 220,
+        backgroundColor: '#4338ca',
+        borderRadius: 8,
+        marginHorizontal: 10,
+        justifyContent: 'space-between',
+      }}
+    >
+      <Text>{req.notificacion}</Text>
+
+      <TextInput
+        style={{
+          height: 30,
+          padding: 10,
+          marginBottom: 10,
+          backgroundColor: 'white',
+          borderRadius: 5,
+          flexWrap: 'wrap',
+        }}
+        onChangeText={handleNoteChange}
+        value={note}
+        placeholder="Agregar un mensaje..."
+      />
+
+      <FlatList
+        numColumns={3}
+        data={req.tipoNotificacion.accionesNotificacion}
+        contentContainerStyle={{
+          gap: 10,
+          padding: 10,
+          margin: 10,
+        }}
+        renderItem={({ item, index }) => (
+          <CustomButton
+            key={index}
+            title={item.accionNotificacion}
+            onPress={() => console.log('prueba')}
+          />
+        )}
+      />
     </View>
   )
 }
