@@ -26,12 +26,12 @@ export default function SignIn() {
             marginTop: 8,
           }}
         >
-          {!isRegister ? 'Already have an account?' : "Don't have an account?"}
+          {!isRegister ? '¿Ya tienes una cuenta?' : '¿No tienes aun cuenta?'}
           <Text
             style={{ color: '#add8e6' }}
             onPress={() => setIsRegister(!isRegister)}
           >
-            {isRegister ? ' Sign up' : ' Sign in'}
+            {isRegister ? ' Registrase' : ' Ingresar'}
           </Text>
         </Text>
       </View>

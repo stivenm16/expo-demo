@@ -72,7 +72,7 @@ export const DynamicForm = () => {
         }}
         onPress={handleSubmit(onSubmit)}
       >
-        <Text style={{ alignSelf: 'center' }}>{'Sign up'}</Text>
+        <Text style={{ alignSelf: 'center' }}>{'Registrarse'}</Text>
       </Pressable>
     </View>
   )

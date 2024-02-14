@@ -77,7 +77,7 @@ export const adminRequests: ApiResponse<NotificacionData> = {
         fechaModificacion: '2024-02-09T19:13:24.53',
         fechaCreacion: '2024-02-09T19:13:00',
         active: true,
-        notificacion: 'Ingreso de usuario',
+        notificacion: 'Ingreso de usuario1',
         notificacionCodigo: null,
         tipoNotificacion: {
           id: 1,
@@ -121,7 +121,7 @@ export const adminRequests: ApiResponse<NotificacionData> = {
         fechaModificacion: '2024-02-09T19:14:08.693',
         fechaCreacion: '2024-02-09T19:14:00',
         active: true,
-        notificacion: 'Ingreso de usuario',
+        notificacion: 'Ingreso de usuario2',
         notificacionCodigo: null,
         tipoNotificacion: {
           id: 1,
@@ -165,7 +165,7 @@ export const adminRequests: ApiResponse<NotificacionData> = {
         fechaModificacion: '2024-02-09T19:21:51.603',
         fechaCreacion: '2024-02-09T19:22:00',
         active: true,
-        notificacion: 'Ingreso de usuario',
+        notificacion: 'Ingreso de usuario3',
         notificacionCodigo: null,
         tipoNotificacion: {
           id: 1,
@@ -209,7 +209,7 @@ export const adminRequests: ApiResponse<NotificacionData> = {
         fechaModificacion: '2024-02-09T20:35:48.917',
         fechaCreacion: '2024-02-09T20:36:00',
         active: true,
-        notificacion: 'Ingreso de usuario',
+        notificacion: 'Ingreso de usuario4',
         notificacionCodigo: null,
         tipoNotificacion: {
           id: 1,
@@ -253,7 +253,7 @@ export const adminRequests: ApiResponse<NotificacionData> = {
         fechaModificacion: '2024-02-09T23:32:02.24',
         fechaCreacion: '2024-02-09T23:32:00',
         active: true,
-        notificacion: 'Ingreso de usuario',
+        notificacion: 'Ingreso de usuario5',
         notificacionCodigo: null,
         tipoNotificacion: {
           id: 1,
@@ -297,7 +297,7 @@ export const adminRequests: ApiResponse<NotificacionData> = {
         fechaModificacion: '2024-02-10T08:11:12.207',
         fechaCreacion: '2024-02-10T08:11:00',
         active: true,
-        notificacion: 'Ingreso de usuario',
+        notificacion: 'Ingreso de usuario6',
         notificacionCodigo: null,
         tipoNotificacion: {
           id: 1,

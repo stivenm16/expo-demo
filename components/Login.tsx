@@ -11,11 +11,17 @@ interface IFormInput {
 }
 
 const schema = yup.object().shape({
-  email: yup.string().email().required('Email is a required field'),
-  password: yup.string().required('Password is required').min(6),
+  email: yup
+    .string()
+    .email('El email debe ser ser válido')
+    .required('El email es requerido'),
+  password: yup
+    .string()
+    .required('La contraseña es requerida')
+    .min(6, 'La contraseña debe tener al menos 6 caracteres'),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref('password'), ''], 'Passwords must match'),
+    .oneOf([yup.ref('password'), ''], 'Las contraseñas no coinciden'),
 })
 
 export const LoginForm = () => {
@@ -52,13 +58,6 @@ export const LoginForm = () => {
           </View>
         )}
         name="email"
-        rules={{
-          required: 'You must enter your email',
-          pattern: {
-            value: /^\S+@\S+$/i,
-            message: 'Enter a valid email address',
-          },
-        }}
       />
 
       <Controller
@@ -66,11 +65,11 @@ export const LoginForm = () => {
         render={({ field }) => (
           <View style={{ gap: 10 }}>
             <Text style={{ color: 'white', fontSize: 14, fontWeight: '500' }}>
-              Password
+              Contraseña
             </Text>
             <TextInput
               {...field}
-              placeholder="Password"
+              placeholder="Contraseña"
               style={{ backgroundColor: 'white', padding: 12, borderRadius: 8 }}
               secureTextEntry
               value={field.value || ''}
@@ -83,9 +82,6 @@ export const LoginForm = () => {
           </View>
         )}
         name="password"
-        rules={{
-          required: 'You must enter your password',
-        }}
       />
 
       <Pressable
@@ -97,7 +93,7 @@ export const LoginForm = () => {
         }}
         onPress={handleSubmit(onSubmit)}
       >
-        <Text style={{ alignSelf: 'center' }}>{'Sign in'}</Text>
+        <Text style={{ alignSelf: 'center' }}>{'Ingresar'}</Text>
       </Pressable>
     </View>
   )

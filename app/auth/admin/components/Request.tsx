@@ -7,9 +7,10 @@ import { FlatList, TextInput } from 'react-native'
 
 interface Props {
   req: Notificacion
+  handleRequest: (id: number) => void
 }
 
-const Request = ({ req }: Props) => {
+const Request = ({ req, handleRequest }: Props) => {
   const [note, setNote] = useState('')
 
   const handleNoteChange = (text: string) => {
@@ -55,7 +56,15 @@ const Request = ({ req }: Props) => {
           <CustomButton
             key={index}
             title={item.accionNotificacion}
-            onPress={() => console.log('prueba')}
+            onPress={() => {
+              console.log(
+                req,
+                note,
+                req.notificacion,
+                'req, note, req.notificacion',
+              )
+              handleRequest(req.id)
+            }}
           />
         )}
       />

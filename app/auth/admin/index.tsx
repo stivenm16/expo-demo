@@ -10,6 +10,9 @@ import Request from './components/Request'
 const admin = () => {
   const [requests, setRequests] = useState<Notificacion[]>()
 
+  const handleRequest = (id: number) =>
+    setRequests((prev) => prev?.filter((req) => req.id !== id))
+
   useEffect(() => {
     const adminReqs = getAdminRequests()
     setRequests(adminReqs)
@@ -39,7 +42,9 @@ const admin = () => {
                 margin: 10,
               }}
               data={requests}
-              renderItem={({ item }) => <Request req={item} />}
+              renderItem={({ item }) => (
+                <Request req={item} handleRequest={handleRequest} />
+              )}
               keyExtractor={(item) => item.id.toString()}
             />
           )}
