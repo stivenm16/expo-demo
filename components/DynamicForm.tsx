@@ -1,5 +1,5 @@
 import { DynamicFormFieldProps } from '@/app/models'
-import { getFormFields } from '@/app/services'
+import { getAdminRequests, getFormFields } from '@/app/services'
 import { createSchema } from '@/app/utils'
 import { yupResolver } from '@hookform/resolvers/yup'
 import React, { useEffect, useState } from 'react'
@@ -9,10 +9,11 @@ import { Pressable, Text, TextInput, View } from 'react-native'
 export const DynamicForm = () => {
   const [fields, setFields] = useState([] as any)
 
+  const fetchFields = async () => await getFormFields().then((res) => setFields(res.data.data.columnas))
+    
   useEffect(() => {
-    const fieldsT = getFormFields()
-    setFields(fieldsT)
-  }, [])
+    fetchFields();
+  }, []);
 
   const onSubmit = async (data: any) => {
     if (data) console.log(data, 'data')
@@ -24,7 +25,7 @@ export const DynamicForm = () => {
   } = useForm({ resolver: yupResolver(createSchema(fields)) })
   return (
     <View>
-      {!!fields &&
+      {fields.length > 0 ?
         fields.map((fieldForm: DynamicFormFieldProps, index: number) => {
           return (
             <Controller
@@ -62,7 +63,7 @@ export const DynamicForm = () => {
               }}
             />
           )
-        })}
+        }): <Text>Cargando...</Text>}
       <Pressable
         style={{
           backgroundColor: '#add8e6',

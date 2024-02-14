@@ -4,7 +4,13 @@ import getToken from '../services/getToken.service'
 const updateHeader = async (request: InternalAxiosRequestConfig<any>) => {
   request.headers['Content-Type'] = 'application/json'
 
-  const token = await getToken()
+  const token = await getToken({
+    username: "admin",
+    password: "admin",
+    app: "string",
+    version: null,
+    idDispositivo: null
+  })
   request.headers['Authorization'] = `Bearer ${token}`
   return request
 }

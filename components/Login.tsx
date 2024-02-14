@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { router } from 'expo-router'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { Pressable, Text, TextInput, View } from 'react-native'
 import * as yup from 'yup'
@@ -34,6 +34,8 @@ export const LoginForm = () => {
   const onSubmit = async (data: IFormInput) => {
     if (data) router.replace('/auth/admin/')
   }
+
+ 
 
   return (
     <View style={{ gap: 10 }}>

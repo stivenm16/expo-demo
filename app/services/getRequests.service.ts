@@ -1,7 +1,13 @@
-import { adminRequests } from '../utils'
+import axios from 'axios'
+import { ROUTES } from '../utils'
 
-export const getAdminRequests = () => {
-  // Replace this with your actual implementation to retrieve the form fields
+export const getAdminRequests =async  () => {
+  const { data } = await axios.get(
+    `http://localhost:5150/sammapi/`, 
+  ).then((res)=> {
+    return res
+  })
+  
 
-  return adminRequests.data.notificaciones
+  return data.data
 }
