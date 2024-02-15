@@ -13,10 +13,13 @@ const admin = () => {
   const handleRequest = (id: number) =>
     setRequests((prev) => prev?.filter((req) => req.id !== id))
 
-  useEffect(() => {
-    const adminReqs = getAdminRequests()
-    setRequests(adminReqs)
-  }, [])
+
+    const fetchFields = async () => await getAdminRequests().then((res) => setRequests(res.data.data.notificaciones))
+    
+    useEffect(() => {
+      fetchFields();
+    }, []);
+ 
   return (
     <View style={{ gap: 10, flexDirection: 'row', flexGrow: 1 }}>
       <View style={{ width: 200, padding: 10, backgroundColor: '#818cf8' }}>

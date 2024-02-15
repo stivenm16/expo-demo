@@ -4,11 +4,12 @@ import { ROUTES } from '../utils/endpoints'
 interface Props {
   username: string
   password: string
-  app: string
+  app?: string
   version?: string | null
   idDispositivo?: string | null
 }
-async function getToken({username, password, app, version, idDispositivo}:Props): Promise<string> {
+
+async function getToken({username, password, app = "string", version = null, idDispositivo = null}:Props): Promise<string> {
 
   const { data } = await axios.post(
     `http://localhost:5150/sammapi/${ROUTES.TOKEN}`, {

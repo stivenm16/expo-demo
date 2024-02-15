@@ -7,9 +7,6 @@ const updateHeader = async (request: InternalAxiosRequestConfig<any>) => {
   const token = await getToken({
     username: "admin",
     password: "admin",
-    app: "string",
-    version: null,
-    idDispositivo: null
   })
   request.headers['Authorization'] = `Bearer ${token}`
   return request

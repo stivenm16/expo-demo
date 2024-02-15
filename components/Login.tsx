@@ -1,8 +1,9 @@
+import getToken from '@/app/services/getToken.service'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { router } from 'expo-router'
 import React, { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Pressable, Text, TextInput, View } from 'react-native'
+import { Platform, Pressable, Text, TextInput, View } from 'react-native'
 import * as yup from 'yup'
 
 interface IFormInput {
@@ -13,12 +14,12 @@ interface IFormInput {
 const schema = yup.object().shape({
   email: yup
     .string()
-    .email('El email debe ser ser válido')
+    //.email('El email debe ser ser válido')
     .required('El email es requerido'),
   password: yup
     .string()
     .required('La contraseña es requerida')
-    .min(6, 'La contraseña debe tener al menos 6 caracteres'),
+    .min(4, 'La contraseña debe tener al menos 4 caracteres'),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref('password'), ''], 'Las contraseñas no coinciden'),
@@ -32,7 +33,17 @@ export const LoginForm = () => {
   } = useForm<IFormInput>({ resolver: yupResolver(schema) })
 
   const onSubmit = async (data: IFormInput) => {
-    if (data) router.replace('/auth/admin/')
+    if (data){ 
+      try {
+        
+        const token = await getToken({username: data.email, password: data.password})
+         if( Platform.OS === "web") localStorage.setItem(token, token)
+        router.replace('/auth/admin/')
+      
+      } catch (error) {
+        console.log('Credenciales invalidas')
+      }
+    }
   }
 
  

@@ -11,7 +11,7 @@ export interface DynamicFormFieldProps {
   tipo: string
   defecto: string | null
   tamano: number | null
-  dependiente: any // You might want to specify a proper type here
+  dependiente: any 
   idSeccionAtributo: number
   ordenEdicion: number
   mostrarEnFormulario: boolean

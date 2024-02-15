@@ -1,13 +1,10 @@
 import axios from 'axios'
 import { ROUTES } from '../utils'
+import axiosInstance from '../interceptors/axios.interceptors'
 
 export const getAdminRequests =async  () => {
-  const { data } = await axios.get(
-    `http://localhost:5150/sammapi/`, 
-  ).then((res)=> {
-    return res
-  })
+  return await axiosInstance.get(
+    `/${ROUTES.GET_REQUESTS}`, 
+  )
   
-
-  return data.data
 }

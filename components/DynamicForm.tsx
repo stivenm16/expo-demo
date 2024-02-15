@@ -1,10 +1,17 @@
 import { DynamicFormFieldProps } from '@/app/models'
-import { getAdminRequests, getFormFields } from '@/app/services'
-import { createSchema } from '@/app/utils'
+import { createRequest, getAdminRequests, getFormFields } from '@/app/services'
+import { createSchema, removeEmptyFields } from '@/app/utils'
 import { yupResolver } from '@hookform/resolvers/yup'
 import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { Pressable, Text, TextInput, View } from 'react-native'
+
+interface FormStructure {
+  email: string
+  nombre?: string
+  profesion?: string
+  telefono?: string
+}
 
 export const DynamicForm = () => {
   const [fields, setFields] = useState([] as any)
@@ -16,7 +23,11 @@ export const DynamicForm = () => {
   }, []);
 
   const onSubmit = async (data: any) => {
-    if (data) console.log(data, 'data')
+
+    if (data) {
+      const filteredData: FormStructure = removeEmptyFields(data)
+      createRequest({description: filteredData.email, data: filteredData.email})
+    }
   }
   const {
     handleSubmit,
