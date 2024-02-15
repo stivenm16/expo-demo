@@ -4,7 +4,7 @@ import { CustomButton } from '@/components'
 import { View } from '@/components/Themed'
 import { Link } from 'expo-router'
 import React, { useEffect, useState } from 'react'
-import { FlatList, Text } from 'react-native'
+import { FlatList, Platform, Text } from 'react-native'
 import Request from './components/Request'
 
 const admin = () => {
@@ -14,6 +14,10 @@ const admin = () => {
     setRequests((prev) => prev?.filter((req) => req.id !== id))
 
 
+    const signOut = () => {
+      if(Platform.OS === "web") localStorage.removeItem("token")
+      console.log('Signing out...')
+    }
     const fetchFields = async () => await getAdminRequests().then((res) => setRequests(res.data.data.notificaciones))
     
     useEffect(() => {
@@ -56,7 +60,7 @@ const admin = () => {
       <Link style={{ position: 'absolute', bottom: 20, right: 10 }} href={'/'}>
         <CustomButton
           title="Cerrar Sesion"
-          onPress={() => console.log('prueba')}
+          onPress={signOut}
         />
       </Link>
     </View>

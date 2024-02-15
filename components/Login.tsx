@@ -37,7 +37,7 @@ export const LoginForm = () => {
       try {
         
         const token = await getToken({username: data.email, password: data.password})
-         if( Platform.OS === "web") localStorage.setItem(token, token)
+         if( Platform.OS === "web") localStorage.setItem("token", token)
         router.replace('/auth/admin/')
       
       } catch (error) {
