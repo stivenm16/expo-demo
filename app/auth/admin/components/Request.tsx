@@ -22,7 +22,7 @@ const Request = ({ req, handleRequest }: Props) => {
         height: 180,
         padding: 20,
         width: 220,
-        backgroundColor: '#4338ca',
+        backgroundColor: '#1f789c',
         borderRadius: 8,
         marginHorizontal: 10,
         justifyContent: 'space-between',

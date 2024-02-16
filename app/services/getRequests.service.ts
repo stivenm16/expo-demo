@@ -1,9 +1,8 @@
-import { ROUTES } from '../utils'
-import axiosInstance from '../interceptors/axios.interceptors'
+import { adminRequests } from '../utils'
 
 export const getAdminRequests = async () => {
-  return await axiosInstance.get(
-    `/${ROUTES.GET_REQUESTS}`, 
-  )
-  
+  // return await axiosInstance.get(
+  //   `/${ROUTES.GET_REQUESTS}`,
+  // )
+  return adminRequests.data.notificaciones
 }

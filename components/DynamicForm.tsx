@@ -1,5 +1,5 @@
 import { DynamicFormFieldProps } from '@/app/models'
-import { createRequest, getAdminRequests, getFormFields } from '@/app/services'
+import { createRequest, getFormFields } from '@/app/services'
 import { createSchema, removeEmptyFields } from '@/app/utils'
 import { yupResolver } from '@hookform/resolvers/yup'
 import React, { useEffect, useState } from 'react'
@@ -16,17 +16,21 @@ interface FormStructure {
 export const DynamicForm = () => {
   const [fields, setFields] = useState([] as any)
 
-  const fetchFields = async () => await getFormFields().then((res) => setFields(res.data.data.columnas))
-    
+  // const fetchFields = async () => await getFormFields().then((res) => setFields(res.data.data.columnas))
+  const fetchFields = async () =>
+    await getFormFields().then((res) => setFields(res))
+
   useEffect(() => {
-    fetchFields();
-  }, []);
+    fetchFields()
+  }, [])
 
   const onSubmit = async (data: any) => {
-
     if (data) {
       const filteredData: FormStructure = removeEmptyFields(data)
-      createRequest({description: filteredData.email, data: filteredData.email})
+      createRequest({
+        description: filteredData.email,
+        data: filteredData.email,
+      })
     }
   }
   const {
@@ -36,7 +40,7 @@ export const DynamicForm = () => {
   } = useForm({ resolver: yupResolver(createSchema(fields)) })
   return (
     <View>
-      {fields.length > 0 ?
+      {fields.length > 0 ? (
         fields.map((fieldForm: DynamicFormFieldProps, index: number) => {
           return (
             <Controller
@@ -74,7 +78,10 @@ export const DynamicForm = () => {
               }}
             />
           )
-        }): <Text>Cargando...</Text>}
+        })
+      ) : (
+        <Text>Cargando...</Text>
+      )}
       <Pressable
         style={{
           backgroundColor: '#add8e6',

@@ -11,7 +11,7 @@ export const CustomButton = ({ title, onPress }: CustomProps, { ...props }) => {
       onPress={onPress}
       {...props}
       style={{
-        backgroundColor: 'blue',
+        backgroundColor: '#206383',
         paddingHorizontal: 10,
         paddingVertical: 8,
         marginRight: 5,

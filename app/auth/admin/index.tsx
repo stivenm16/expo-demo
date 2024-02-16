@@ -4,7 +4,7 @@ import { CustomButton } from '@/components'
 import { View } from '@/components/Themed'
 import { Link } from 'expo-router'
 import React, { useEffect, useState } from 'react'
-import { FlatList, Platform, Text } from 'react-native'
+import { FlatList, Image, Platform, Text } from 'react-native'
 import Request from './components/Request'
 
 const admin = () => {
@@ -13,22 +13,40 @@ const admin = () => {
   const handleRequest = (id: number) =>
     setRequests((prev) => prev?.filter((req) => req.id !== id))
 
+  const signOut = () => {
+    if (Platform.OS === 'web') localStorage.removeItem('token')
+    console.log('Signing out...')
+  }
+  // const fetchFields = async () => await getAdminRequests().then((res) => setRequests(res.data.data.notificaciones))
+  const fetchFields = async () =>
+    await getAdminRequests().then((res) => setRequests(res))
 
-    const signOut = () => {
-      if(Platform.OS === "web") localStorage.removeItem("token")
-      console.log('Signing out...')
-    }
-    const fetchFields = async () => await getAdminRequests().then((res) => setRequests(res.data.data.notificaciones))
-    
-    useEffect(() => {
-      fetchFields();
-    }, []);
- 
+  useEffect(() => {
+    fetchFields()
+  }, [])
+
   return (
-    <View style={{ gap: 10, flexDirection: 'row', flexGrow: 1 }}>
-      <View style={{ width: 200, padding: 10, backgroundColor: '#818cf8' }}>
+    <View style={{ gap: 10, flexDirection: 'row', flex: 1 }}>
+      <View
+        style={{
+          width: 200,
+          padding: 10,
+          backgroundColor: '#71b7e4',
+          // overflow: 'hidden',
+        }}
+      >
         <Text style={{ color: 'white' }}>Admin</Text>
       </View>
+
+      <Image
+        source={require('@/assets/images/logo-dark.jpeg')}
+        style={{
+          position: 'absolute',
+          bottom: '5%',
+          left: '45%',
+          zIndex: 1,
+        }}
+      />
       <View style={{ flex: 1, paddingTop: 40 }}>
         <Text
           style={{
@@ -58,10 +76,7 @@ const admin = () => {
         </View>
       </View>
       <Link style={{ position: 'absolute', bottom: 20, right: 10 }} href={'/'}>
-        <CustomButton
-          title="Cerrar Sesion"
-          onPress={signOut}
-        />
+        <CustomButton title="Cerrar Sesion" onPress={signOut} />
       </Link>
     </View>
   )

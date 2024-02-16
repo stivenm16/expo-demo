@@ -390,7 +390,7 @@ export const adminRequests: ApiResponse<NotificacionData> = {
   message: 'Success',
 }
 
-const tokenResponse = {
+export const tokenResponse = {
   status: 'Ok',
   statusCode: 200,
   message: 'Success',
