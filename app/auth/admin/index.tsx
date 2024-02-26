@@ -1,11 +1,11 @@
-import { Notificacion } from '@/app/models'
-import { getAdminRequests } from '@/app/services'
 import { CustomButton } from '@/components'
 import { View } from '@/components/Themed'
 import { Link } from 'expo-router'
 import React, { useEffect, useState } from 'react'
 import { FlatList, Image, Platform, Text } from 'react-native'
 import Request from './components/Request'
+import { getAdminRequests } from 'samm-frontend-resources-test/services'
+import { Notificacion } from 'samm-frontend-resources-test/models'
 
 const admin = () => {
   const [requests, setRequests] = useState<Notificacion[]>()
@@ -29,7 +29,6 @@ const admin = () => {
     <View style={{ gap: 10, flexDirection: 'row', flex: 1 }}>
       <View
         style={{
-          width: 200,
           padding: 10,
           backgroundColor: '#71b7e4',
           // overflow: 'hidden',

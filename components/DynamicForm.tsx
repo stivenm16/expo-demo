@@ -1,6 +1,3 @@
-import { DynamicFormFieldProps } from '@/app/models'
-import { createRequest } from '@/app/services'
-
 import { createSchema, removeEmptyFields } from '@/app/utils'
 import { yupResolver } from '@hookform/resolvers/yup'
 import React, { useEffect, useState } from 'react'
@@ -9,6 +6,8 @@ import { Pressable, Text, TextInput, View } from 'react-native'
 
 //@ts-ignore
 import { getFormFields } from 'samm-frontend-resources-test'
+import { DynamicFormFieldProps } from 'samm-frontend-resources-test/models'
+import { createRequest } from 'samm-frontend-resources-test/services'
 interface FormStructure {
   email: string
   nombre?: string

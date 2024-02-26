@@ -1,9 +1,9 @@
-import { Notificacion } from '@/app/models'
 import { CustomButton } from '@/components'
 
 import { Text, View } from '@/components/Themed'
 import React, { useState } from 'react'
 import { FlatList, TextInput } from 'react-native'
+import { Notificacion } from 'samm-frontend-resources-test/models'
 
 interface Props {
   req: Notificacion

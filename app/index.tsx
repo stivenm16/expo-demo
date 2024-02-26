@@ -6,19 +6,17 @@ import { Image, ScrollView, Text } from 'react-native'
 export default function SignIn() {
   const [isRegister, setIsRegister] = useState(true)
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, paddingTop: 50, backgroundColor: '#212d3c' }}>
       <Image
         source={require('@/assets/images/logo-dark.jpeg')}
         style={{
-          left: '37.5%',
-          zIndex: 1,
-          position: 'absolute',
-          top: '5%',
+          alignSelf: 'center',
+          marginHorizontal: 'auto',
         }}
       />
       <ScrollView
         style={{
-          marginTop: 180,
+          marginTop: 10,
         }}
       >
         <View
