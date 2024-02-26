@@ -1,11 +1,14 @@
 import { DynamicFormFieldProps } from '@/app/models'
-import { createRequest, getFormFields } from '@/app/services'
+import { createRequest } from '@/app/services'
+
 import { createSchema, removeEmptyFields } from '@/app/utils'
 import { yupResolver } from '@hookform/resolvers/yup'
 import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { Pressable, Text, TextInput, View } from 'react-native'
 
+//@ts-ignore
+import { getFormFields } from 'samm-frontend-resources-test'
 interface FormStructure {
   email: string
   nombre?: string
@@ -18,7 +21,7 @@ export const DynamicForm = () => {
 
   // const fetchFields = async () => await getFormFields().then((res) => setFields(res.data.data.columnas))
   const fetchFields = async () =>
-    await getFormFields().then((res) => setFields(res))
+    await getFormFields().then((res: any) => setFields(res))
 
   useEffect(() => {
     fetchFields()

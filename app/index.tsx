@@ -1,7 +1,7 @@
 import { DynamicForm, LoginForm } from '@/components'
 import { View } from '@/components/Themed'
 import React, { useState } from 'react'
-import { Image, Text } from 'react-native'
+import { Image, ScrollView, Text } from 'react-native'
 
 export default function SignIn() {
   const [isRegister, setIsRegister] = useState(true)
@@ -16,35 +16,41 @@ export default function SignIn() {
           top: '5%',
         }}
       />
-      <View
+      <ScrollView
         style={{
-          backgroundColor: '#1f789c',
-          padding: 42,
-          borderRadius: 8,
-          marginVertical: 'auto',
-          width: '25%',
-          gap: 20,
-          alignSelf: 'center',
           marginTop: 180,
         }}
       >
-        {isRegister ? <LoginForm /> : <DynamicForm />}
-        <Text
+        <View
           style={{
-            color: 'white',
-            textAlign: 'center',
-            marginTop: 8,
+            backgroundColor: '#1f789c',
+            padding: 42,
+            borderRadius: 8,
+            marginVertical: 'auto',
+            // width: 100,
+            height: 'auto',
+
+            alignSelf: 'center',
           }}
         >
-          {!isRegister ? '¿Ya tienes una cuenta?' : '¿No tienes aun cuenta?'}
+          {isRegister ? <LoginForm /> : <DynamicForm />}
           <Text
-            style={{ color: '#add8e6' }}
-            onPress={() => setIsRegister(!isRegister)}
+            style={{
+              color: 'white',
+              textAlign: 'center',
+              marginTop: 8,
+            }}
           >
-            {isRegister ? ' Registrase' : ' Ingresar'}
+            {!isRegister ? '¿Ya tienes una cuenta?' : '¿No tienes aun cuenta?'}
+            <Text
+              style={{ color: '#add8e6' }}
+              onPress={() => setIsRegister(!isRegister)}
+            >
+              {isRegister ? ' Registrase' : ' Ingresar'}
+            </Text>
           </Text>
-        </Text>
-      </View>
+        </View>
+      </ScrollView>
     </View>
   )
 }
