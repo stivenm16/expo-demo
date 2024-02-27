@@ -5,7 +5,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { Pressable, Text, TextInput, View } from 'react-native'
 
 //@ts-ignore
-import { getFormFields } from 'samm-frontend-resources-test'
+import { getFormFields } from 'samm-frontend-resources-test/services'
 import { DynamicFormFieldProps } from 'samm-frontend-resources-test/models'
 import { createRequest } from 'samm-frontend-resources-test/services'
 interface FormStructure {
@@ -57,12 +57,14 @@ export const DynamicForm = () => {
                   </Text>
                   <TextInput
                     {...field}
+                    onChangeText={field.onChange}
                     placeholder={fieldForm.columna}
                     style={{
                       backgroundColor: 'white',
                       padding: 12,
                       borderRadius: 8,
                     }}
+                    
                     value={field.value || ''}
                   />
                   {errors[fieldForm.columna] && (

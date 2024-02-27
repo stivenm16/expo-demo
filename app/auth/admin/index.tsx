@@ -1,13 +1,13 @@
 import { CustomButton } from '@/components'
 import { View } from '@/components/Themed'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 import React, { useEffect, useState } from 'react'
-import { FlatList, Image, Platform, Text } from 'react-native'
+import { FlatList, Image, Platform, SafeAreaView, Text, StyleSheet } from 'react-native'
 import Request from './components/Request'
 import { getAdminRequests } from 'samm-frontend-resources-test/services'
 import { Notificacion } from 'samm-frontend-resources-test/models'
 
-const admin = () => {
+const Admin = () => {
   const [requests, setRequests] = useState<Notificacion[]>()
 
   const handleRequest = (id: number) =>
@@ -16,8 +16,9 @@ const admin = () => {
   const signOut = () => {
     if (Platform.OS === 'web') localStorage.removeItem('token')
     console.log('Signing out...')
+    router.replace('/')
   }
-  // const fetchFields = async () => await getAdminRequests().then((res) => setRequests(res.data.data.notificaciones))
+
   const fetchFields = async () =>
     await getAdminRequests().then((res) => setRequests(res))
 
@@ -26,59 +27,65 @@ const admin = () => {
   }, [])
 
   return (
-    <View style={{ gap: 10, flexDirection: 'row', flex: 1 }}>
-      <View
-        style={{
-          padding: 10,
-          backgroundColor: '#71b7e4',
-          // overflow: 'hidden',
-        }}
-      >
-        <Text style={{ color: 'white' }}>Admin</Text>
-      </View>
-
+    <SafeAreaView style={styles.container}>
+  
       <Image
         source={require('@/assets/images/logo-dark.jpeg')}
-        style={{
-          position: 'absolute',
-          bottom: '5%',
-          left: '45%',
-          zIndex: 1,
-        }}
+        style={styles.backgroundImage}
+        resizeMode="cover"
       />
-      <View style={{ flex: 1, paddingTop: 40 }}>
-        <Text
-          style={{
-            color: 'white',
-            alignSelf: 'center',
-            fontSize: 20,
-          }}
-        >
-          Solicitudes
-        </Text>
-        <View>
-          {!!requests && (
-            <FlatList
-              numColumns={5}
-              contentContainerStyle={{
-                gap: 10,
-                padding: 10,
-                margin: 10,
-              }}
-              data={requests}
-              renderItem={({ item }) => (
-                <Request req={item} handleRequest={handleRequest} />
-              )}
-              keyExtractor={(item) => item.id.toString()}
-            />
-          )}
-        </View>
+      <View style={styles.contentContainer}>
+        <Text style={styles.heading}>Solicitudes</Text>
+        <FlatList
+          numColumns={1}
+          contentContainerStyle={styles.listContainer}
+          data={requests}
+          renderItem={({ item }) => <Request req={item} handleRequest={handleRequest} />}
+          keyExtractor={(item) => item.id.toString()}
+        />
+        <Link style={styles.button} href={'/'}>
+          <CustomButton title="Cerrar Sesion" onPress={signOut} />
+        </Link>
       </View>
-      <Link style={{ position: 'absolute', bottom: 20, right: 10 }} href={'/'}>
-        <CustomButton title="Cerrar Sesion" onPress={signOut} />
-      </Link>
-    </View>
+    </SafeAreaView>
   )
 }
 
-export default admin
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#212d3c',
+  },
+  backgroundImage: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: -1,
+    opacity: 0.4,
+    marginTop: 400,
+    marginLeft: 10
+  },
+  contentContainer: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingTop: 50,
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  heading: {
+    color: 'white',
+    fontSize: 20,
+    marginBottom: 20,
+  },
+  listContainer: {
+    flexGrow: 1,
+    gap: 10,
+    minWidth: '100%',
+    alignItems:'center', 
+  },
+  button: {
+    position: 'absolute',
+    bottom: 20,
+    right: 10,
+  },
+})
+
+export default Admin

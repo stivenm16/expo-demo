@@ -51,9 +51,11 @@ export const LoginForm = () => {
             <Text style={{ color: 'white', fontSize: 14, fontWeight: '500' }}>
               Email
             </Text>
+            
             <TextInput
               {...field}
               placeholder="Email"
+              onChangeText={field.onChange}
               style={{ backgroundColor: 'white', padding: 12, borderRadius: 8 }}
               value={field.value || ''}
             />
@@ -79,6 +81,7 @@ export const LoginForm = () => {
               placeholder="Contraseña"
               style={{ backgroundColor: 'white', padding: 12, borderRadius: 8 }}
               secureTextEntry
+              onChangeText={field.onChange}
               value={field.value || ''}
             />
             {errors.password && (
